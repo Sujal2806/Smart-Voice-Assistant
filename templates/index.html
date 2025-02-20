@@ -5,31 +5,108 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Smart Voice Assistant</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="container">
-        <header>
-            <h1>Smart Voice Assistant</h1>
-        </header>
-        
-        <main>
-            <div class="recording-section">
-                <button id="startRecording" class="btn">Start Recording</button>
-                <button id="stopRecording" class="btn" disabled>Stop Recording</button>
-                <div id="status" class="status"></div>
-            </div>
+    <!-- Main Heading -->
+    <section class="hero">
+        <h1>Smart Voice Assistant</h1>
+        <p class="subtitle">Convert your audio meetings into text analysis</p>
+    </section>
 
-            <div class="transcript-section">
-                <h2>Transcript</h2>
-                <div id="transcriptText" class="transcript"></div>
+    <!-- Main Content -->
+    <main class="main-container">
+        <!-- Upload Section Box -->
+        <section class="content-box upload-box">
+            <div class="box-header">
+                <h2>Upload Audio</h2>
             </div>
+            <div class="box-content">
+                <div class="upload-area">
+                    <h3>Upload Audio File</h3>
+                    <p>Drag & drop your WAV file here or click to browse</p>
+                    <input type="file" id="audioFile" accept="audio/wav" class="file-input">
+                    <div class="file-info">
+                        <span id="fileName">No file selected</span>
+                    </div>
+                    <button id="processBtn" class="primary-button" disabled>
+                        Process Audio
+                    </button>
+                </div>
+            </div>
+        </section>
 
-            <div class="actions-section">
-                <h2>Extracted Actions</h2>
-                <div id="tasksList" class="actions-list"></div>
+        <div class="section-divider"></div>
+
+        <!-- Results Section Box -->
+        <section class="content-box results-box">
+            <div class="box-header">
+                <h2>Analysis Results</h2>
             </div>
-        </main>
+            <div class="box-content">
+                <div class="results-grid">
+                    <!-- Transcript Box -->
+                    <div class="result-card purple-box">
+                        <div class="card-header">
+                            <h3>Transcript</h3>
+                        </div>
+                        <div class="card-content" id="transcript">
+                            <p class="placeholder">Transcript will appear here...</p>
+                        </div>
+                    </div>
+
+                    <!-- Meeting Details Box -->
+                    <div class="result-card blue-box">
+                        <div class="card-header">
+                            <h3>Meeting Details</h3>
+                        </div>
+                        <div class="card-content" id="meetingDetails">
+                            <div class="meeting-info">
+                                <div class="info-row">
+                                    <span class="label">Date:</span>
+                                    <span class="value">Waiting...</span>
+                                </div>
+                                <div class="info-row">
+                                    <span class="label">Time:</span>
+                                    <span class="value">Waiting...</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Action Items Box -->
+                    <div class="result-card green-box">
+                        <div class="card-header">
+                            <h3>Action Items</h3>
+                        </div>
+                        <div class="card-content" id="actions">
+                            <p class="placeholder">Action items will appear here...</p>
+                        </div>
+                    </div>
+
+                    <!-- Key Points Box -->
+                    <div class="result-card orange-box">
+                        <div class="card-header">
+                            <h3>Key Points</h3>
+                        </div>
+                        <div class="card-content" id="keyPoints">
+                            <p class="placeholder">Key points will appear here...</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Loading Overlay -->
+    <div id="loading-overlay" class="hidden">
+        <div class="loading-container">
+            <div class="loading-spinner"></div>
+            <p>Processing your audio file...</p>
+        </div>
     </div>
+
+    <!-- Scripts -->
     <script src="{{ url_for('static', filename='js/main.js') }}"></script>
 </body>
 </html>
