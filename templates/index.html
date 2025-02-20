@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Voice Assistant</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Smart Voice Assistant</h1>
+        </header>
+        
+        <main>
+            <div class="recording-section">
+                <button id="startRecording" class="btn">Start Recording</button>
+                <button id="stopRecording" class="btn" disabled>Stop Recording</button>
+                <div id="status" class="status"></div>
+            </div>
+
+            <div class="transcript-section">
+                <h2>Transcript</h2>
+                <div id="transcriptText" class="transcript"></div>
+            </div>
+
+            <div class="actions-section">
+                <h2>Extracted Actions</h2>
+                <div id="tasksList" class="actions-list"></div>
+            </div>
+        </main>
+    </div>
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>
